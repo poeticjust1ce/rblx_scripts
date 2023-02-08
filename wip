@@ -1,45 +1,50 @@
 -- [[ SETTINGS ]] --
 local serverhop = true
+
 -- hook settings
 local hs = game:GetService("HttpService")
 local hook = "https://discord.com/api/webhooks/1072549955887177778/nHDYMofRK3R-wIUyN2eCgNwCS_CIhQ1PJSJjQ0o53M__RefPSyeiy-KvPX0MNSQ9aJfK"
 
--- fruits settings
-local useList = false
-local fruitList = {}
 
--- [[ END OF SETTINGS ]] --
 
--- [[ MAIN CODE ]] --
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- [[ Main Code ]] --
 repeat
     task.wait()
 until game.IsLoaded and (game.Players.LocalPlayer or game.Players.PlayerAdded:Wait()) and (game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait())
 
--- local vars
-local plr = game.Players.LocalPlayer
-local char = plr.Character
-local hrp = char:WaitForChild("HumanoidRootPart")
-local b = plr.Backpack
+-- [[ Variables ]] --
 local rem = game:GetService("ReplicatedStorage").Remotes["CommF_"]
-
--- tween vars
 local t = game.TweenService
 
--- body vel
-local bv = Instance.new("BodyVelocity")
-bv.MaxForce = Vector3.new(1/0, 1/0, 1/0)
-bv.Velocity = Vector3.new()
-bv.Name = "bV"
-
--- body angular vel
-local bav = Instance.new("BodyAngularVelocity")
-bav.AngularVelocity = Vector3.new()
-bav.MaxTorque = Vector3.new(1/0, 1/0, 1/0)
-bav.Name = "bAV"
-
---[[ COOOOOOOOOOOODEEEEEEEEEEEEEEEEEEEEEE --]]
-
--- functions
+-- [[ Functions ]] --
 function sendMessage(title, desc, color) -- must be hex
     syn.request({
         Url = hook,
@@ -58,6 +63,7 @@ function sendMessage(title, desc, color) -- must be hex
     })
 end
 
+-- function that returns image url
 function selectImage(fruit)
     if fruit == "Kilo Fruit" then return "https://static.wikia.nocookie.net/roblox-blox-piece/images/3/39/KiloNew.png"
     elseif fruit == "Spin Fruit" then return "https://static.wikia.nocookie.net/roblox-blox-piece/images/8/80/SpinNew.png"
@@ -98,7 +104,11 @@ function selectImage(fruit)
     end
 end
 
+
+-- function that stores fruit even if its inside the backpack or if you're holding it
 function StoreFruit()
+    local plr = game.Players.LocalPlayer
+    local char = plr.Character
     local fruit = char:FindFirstChildOfClass("Tool") 
     and char:FindFirstChildOfClass("Tool").Name:find("Fruit")
     and char:FindFirstChildOfClass("Tool")
@@ -112,6 +122,7 @@ function StoreFruit()
             end
         )()
 
+    -- fires store fruit event
     if fruit then rem:InvokeServer("StoreFruit", fruit:GetAttribute("OriginalName"), fruit)
         print(fruit, "Stored!")
         sendMessage('You stored a fruit! ✅', fruit, '36ff6b')
@@ -119,66 +130,74 @@ function StoreFruit()
     end
 end
 
+-- function that finds fruit inside the workplace
 function FindFruit()
+    local plr = game.Players.LocalPlayer
+    local char = plr.Character
     local FruitsInServer = {}
 
+    -- body vel
+    local bv = Instance.new("BodyVelocity")
+    bv.MaxForce = Vector3.new(1/0, 1/0, 1/0)
+    bv.Velocity = Vector3.new()
+    bv.Name = "bV"
+
+    -- body angular vel
+    local bav = Instance.new("BodyAngularVelocity")
+    bav.AngularVelocity = Vector3.new()
+    bav.MaxTorque = Vector3.new(1/0, 1/0, 1/0)
+    bav.Name = "bAV"
+
+    -- inserts detected fruits to table
     for _, v in pairs(game.Workspace:GetChildren()) do
-        if v.Name:find("Fruit") and (v:IsA("Tool") or v:IsA("Model")) then
+        if v.Name:find("Fruit") and v:IsA("Tool") then
             print("Fruit Detected!")
             table.insert(FruitsInServer, tostring(v.Name))
         end
     end
 
-    -- send message of fruits in server
+    -- if table has > 0 runs the script and posts message to discord webhook
     if table.getn(FruitsInServer) ~= 0 then
         sendMessage("Fruit(s) detected in server! 🕵️", table.concat(FruitsInServer, ', '),'ffeb33')
-    end
 
-    for _, v in pairs(game.Workspace:GetChildren()) do
-        if v.Name:find("Fruit") and (v:IsA("Tool") or v:IsA("Model")) then
-
-            -- tween to fruit
-            repeat
-                local anc1 = bv:Clone()
-                anc1.Parent = char.hrp
-                local anc2 = bav:Clone()
-                anc2.Parent = char.hrp
-                local p = t:Create(char.hrp, TweenInfo.new((plr:DistanceFromCharacter(v.Handle.Position)-100)/320, Enum.EasingStyle.Linear), {CFrame=v.Handle.CFrame + Vector3.new(0, v.Handle.Size.Y, 0)})
-                p:Play()
-                p.Completed:Wait()
-                char.hrp.CFrame = v.Handle.CFrame
-                anc1:Destroy()
-                anc2:Destroy()
-                task.wait()
-            until v.Parent ~= game.Workspace
-
-            -- store da fruit
-            task.wait()
-            StoreFruit()
+        -- tween to fruit 
+        for _, v in pairs(game.Workspace:GetChildren()) do
+            if v.Name:find("Fruit") and v:IsA("Tool") then
+                repeat
+                    local anc1 = bv:Clone()
+                    anc1.Parent = char.HumanoidRootPart
+                    local anc2 = bav:Clone()
+                    anc2.Parent = char.HumanoidRootPart
+                    local p = t:Create(char.HumanoidRootPart, TweenInfo.new((plr:DistanceFromCharacter(v.Handle.Position)-100)/320, Enum.EasingStyle.Linear), {CFrame=v.Handle.CFrame + Vector3.new(0, v.Handle.Size.Y, 0)})
+                    p:Play()
+                    p.Completed:Wait()
+                    char.HumanoidRootPart.CFrame = v.Handle.CFrame
+                    anc1:Destroy()
+                    anc2:Destroy()
+                    task.wait()
+                until v.Parent ~= game.Workspace
+                -- store fruit after tweening
+                StoreFruit()
+            end
         end
     end
 end
 
+-- function that returns true or false
 function DetectFruit()
     for _, v in pairs(game.Workspace:GetChildren()) do
-        if v.Name:find("Fruit") and (v:IsA("Tool") or v:IsA("Model")) then
+        if v.Name:find("Fruit") and v:IsA("Tool") then
             return true
         else return false
         end
     end
 end
 
-function SelectTeam()
-    rem:InvokeServer("DressrosaQuestProgress")
-    rem:InvokeServer("ZQuestProgress")
-    rem:InvokeServer("ProQuestProgress")
-    task.wait()
-    rem:InvokeServer("SetTeam", "Marines")
-end
-
--- Code Starts Here --
+-- main code --
 loadstring(game:HttpGet("https://raw.githubusercontent.com/xQuartyx/DonateMe/main/OldBf"))()
 FindFruit()
+
+print ("Everything Loaded")
 
 if serverhop == true or DetectFruit() == false then
     loadstring(game:HttpGet("https://pastebin.com/raw/HXZUPSj2"))()
