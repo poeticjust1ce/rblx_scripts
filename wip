@@ -18,6 +18,7 @@ until game.IsLoaded and (game.Players.LocalPlayer or game.Players.PlayerAdded:Wa
 -- local vars
 local plr = game.Players.LocalPlayer
 local char = plr.Character
+local hrp = char:WaitForChild("HumanoidRootPart")
 local b = plr.Backpack
 local rem = game:GetService("ReplicatedStorage").Remotes["CommF_"]
 
@@ -178,8 +179,6 @@ end
 -- Code Starts Here --
 loadstring(game:HttpGet("https://raw.githubusercontent.com/xQuartyx/DonateMe/main/OldBf"))()
 FindFruit()
-
-task.wait(2)
 
 if serverhop == true or DetectFruit() == false then
     loadstring(game:HttpGet("https://pastebin.com/raw/HXZUPSj2"))()
