@@ -140,13 +140,13 @@ function FindFruit()
             -- tween to fruit
             repeat
                 local anc1 = bv:Clone()
-                anc1.Parent = char.HumanoidRootPart
+                anc1.Parent = char.hrp
                 local anc2 = bav:Clone()
-                anc2.Parent = char.HumanoidRootPart
-                local p = t:Create(char.HumanoidRootPart, TweenInfo.new((plr:DistanceFromCharacter(v.Handle.Position)-100)/320, Enum.EasingStyle.Linear), {CFrame=v.Handle.CFrame + Vector3.new(0, v.Handle.Size.Y, 0)})
+                anc2.Parent = char.hrp
+                local p = t:Create(char.hrp, TweenInfo.new((plr:DistanceFromCharacter(v.Handle.Position)-100)/320, Enum.EasingStyle.Linear), {CFrame=v.Handle.CFrame + Vector3.new(0, v.Handle.Size.Y, 0)})
                 p:Play()
                 p.Completed:Wait()
-                char.HumanoidRootPart.CFrame = v.Handle.CFrame
+                char.hrp.CFrame = v.Handle.CFrame
                 anc1:Destroy()
                 anc2:Destroy()
                 task.wait()
