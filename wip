@@ -182,5 +182,5 @@ FindFruit()
 task.wait(2)
 
 if serverhop == true or DetectFruit() == false then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/78n/Amity/main/AutoServerHop.lua"))()
+    loadstring(game:HttpGet("https://pastebin.com/raw/HXZUPSj2"))()
 end
