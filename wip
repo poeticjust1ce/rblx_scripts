@@ -150,7 +150,7 @@ function FindFruit()
 
     -- inserts detected fruits to table
     for _, v in pairs(game.Workspace:GetChildren()) do
-        if v.Name:find("Fruit") and v:IsA("Tool") then
+        if v.Name:find("Fruit") and (v:IsA("Tool") or v:IsA("Model")) then
             print("Fruit Detected!")
             table.insert(FruitsInServer, tostring(v.Name))
         end
