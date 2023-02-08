@@ -172,11 +172,13 @@ function FindFruit()
                     p:Play()
                     p.Completed:Wait()
                     char.HumanoidRootPart.CFrame = v.Handle.CFrame
-                    firetouchinterest(char.HumanoidRootPart, v.Handle, 0)
-                    task.wait()
-                    firetouchinterest(char.HumanoidRootPart, v.Handle, 1)
                     anc1:Destroy()
                     anc2:Destroy()
+                    if v.Name == "Fruit" then
+                        firetouchinterest(char.HumanoidRootPart, v.Handle, 0)
+                        task.wait()
+                        firetouchinterest(char.HumanoidRootPart, v.Handle, 1)
+                    end
                     task.wait()
                 until v.Parent ~= game.Workspace
                 -- store fruit after tweening
