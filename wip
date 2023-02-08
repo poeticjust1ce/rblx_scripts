@@ -162,7 +162,7 @@ function FindFruit()
 
         -- tween to fruit 
         for _, v in pairs(game.Workspace:GetChildren()) do
-            if v.Name:find("Fruit") and v:IsA("Tool") then
+            if v.Name:find("Fruit") and (v:IsA("Tool") or v:IsA("Model")) then
                 repeat
                     local anc1 = bv:Clone()
                     anc1.Parent = char.HumanoidRootPart
