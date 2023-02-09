@@ -1,5 +1,5 @@
 -- [[ SETTINGS ]] --
-_G.serverhop = true
+_G.serverhop = false
 
 -- hook settings
 local hs = game:GetService("HttpService")
