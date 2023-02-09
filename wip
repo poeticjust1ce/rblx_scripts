@@ -1,5 +1,5 @@
 -- [[ SETTINGS ]] --
-local serverhop = true
+_G.serverhop = true
 
 -- hook settings
 local hs = game:GetService("HttpService")
@@ -143,7 +143,7 @@ function FindFruit()
     bv.Name = "bV"
 
     -- body angular vel
-    local bav = Instance.new("BodyAngularVelocity")
+    local bav = Instance.new("AngularVelocity")
     bav.AngularVelocity = Vector3.new()
     bav.MaxTorque = Vector3.new(1/0, 1/0, 1/0)
     bav.Name = "bAV"
@@ -206,6 +206,6 @@ FindFruit()
 
 print ("Everything Loaded")
 
-if serverhop == true or DetectFruit() == false then
+if _G.serverhop == true or DetectFruit() == false then
     loadstring(game:HttpGet("https://pastebin.com/raw/HXZUPSj2"))()
 end
