@@ -1,4 +1,14 @@
+repeat task.wait() until game:IsLoaded()
+-- config
+getgenv().Config = {
+    Webhook = "https://discord.com/api/webhooks/1075041501081518222/YQfYqa-0QcyElS-5-42fVUrW2txFY78DS8zLrbMxoPJ60OJZ_i994QyP-oAwLZ8yMpel",
+    ServerHop = true,
+    AutoTween = false,
+    IgnoredFruits = {"Spike Fruit"} -- not working atm
+}
+
 -- functions
+
 function Notify(fruits)
 
     local date = DateTime.now():FormatLocalTime("MMM/D/YY HH:mm", "en-US")
@@ -176,26 +186,27 @@ function TweenToFruit(bool)
     bav.MaxTorque = Vector3.new(1/0, 1/0, 1/0)
     bav.Name = "bAV"
 
-    for _, v in pairs(game.Workspace:GetChildren()) do
-        if v.Name:find("Fruit") and v:IsA("Tool") then
-            while bool or v.Parent ~= game.Workspace do
-                local anc1 = bv:Clone()
-                anc1.Parent = char.HumanoidRootPart
-                local anc2 = bav:Clone()
-                anc2.Parent = char.HumanoidRootPart
-                local p = t:Create(char.HumanoidRootPart, TweenInfo.new((plr:DistanceFromCharacter(v.Handle.Position)-100)/320, Enum.EasingStyle.Linear), {CFrame=v.Handle.CFrame + Vector3.new(0, v.Handle.Size.Y, 0)})
-                p:Play()
-                p.Completed:Wait()
-                char.HumanoidRootPart.CFrame = v.Handle.CFrame
-                anc1:Destroy()
-                anc2:Destroy()   
-                StoreFruit()  
-                task.wait()
+    while bool do
+        task.wait()
+        for _, v in pairs(game.Workspace:GetChildren()) do
+            if v.Name:find("Fruit") and v:IsA("Tool") then
+                while v.Parent ~= game.Workspace do
+                    local anc1 = bv:Clone()
+                    anc1.Parent = char.HumanoidRootPart
+                    local anc2 = bav:Clone()
+                    anc2.Parent = char.HumanoidRootPart
+                    local p = t:Create(char.HumanoidRootPart, TweenInfo.new((plr:DistanceFromCharacter(v.Handle.Position)-100)/320, Enum.EasingStyle.Linear), {CFrame=v.Handle.CFrame + Vector3.new(0, v.Handle.Size.Y, 0)})
+                    p:Play()
+                    p.Completed:Wait()
+                    char.HumanoidRootPart.CFrame = v.Handle.CFrame
+                    anc1:Destroy()
+                    anc2:Destroy()                
+                    task.wait()
+                end
+                StoreFruit()
             end
         end
     end
-    
-
 end
 
 -- ui 
@@ -222,7 +233,11 @@ maintab:Toggle('Fruit ESP', function(v)
 end)
 
 maintab:Toggle('Tween to Fruit', function(v)
-    TweenToFruit(v)
+    if v then
+        TweenToFruit(true)
+    else   
+        TweenToFruit(false) 
+    end
 end)
 
 maintab:Button('Server Hop', function()
