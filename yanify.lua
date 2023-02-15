@@ -67,7 +67,7 @@ function FindFruit()
                     table.insert(MeshesTable, y.Name)
                 end
             end
-            table.insert(FruitTable, "Fruit ".."["..table.concat(MeshesTable, " / ").."]")
+            table.insert(FruitTable, "Fruit ".."["..table.concat(MeshesTable, " | ").."]")
         end
     end
 
