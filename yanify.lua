@@ -63,6 +63,7 @@ function FindFruit()
         if v:IsA("Model") and v.Name == "Fruit" then
            local c = v:GetDescendants()
            table.insert(FruitTable, "Spawned Fruit".."["..table.concat(c, "/").."]")
+           print(table.concat(c, "\n"))
         end
     end
 
