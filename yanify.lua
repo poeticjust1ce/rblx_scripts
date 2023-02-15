@@ -175,11 +175,11 @@ function TweenToFruit(bool)
     bav.MaxTorque = Vector3.new(1/0, 1/0, 1/0)
     bav.Name = "bAV"
 
-    while bool do
-        task.wait()
+    if bool then
+        
         for _, v in pairs(game.Workspace:GetChildren()) do
             if v.Name:find("Fruit") and v:IsA("Tool") then
-                while v.Parent ~= game.Workspace do
+                repeat
                     local anc1 = bv:Clone()
                     anc1.Parent = char.HumanoidRootPart
                     local anc2 = bav:Clone()
@@ -191,10 +191,11 @@ function TweenToFruit(bool)
                     anc1:Destroy()
                     anc2:Destroy()                
                     task.wait()
-                end
+                until v.Parent ~= game.Workspace or bool == false
                 StoreFruit()
             end
         end
+    
     end
 end
 
@@ -241,8 +242,8 @@ end)
 maintab:Toggle('Tween to Fruit', function(v)
     if v then
         TweenToFruit(true)
-    else   
-        TweenToFruit(false) 
+    else
+        TweenToFruit(false)
     end
 end)
 
