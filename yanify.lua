@@ -278,6 +278,5 @@ if getgenv().Config.AutoTween then
 end
 
 if getgenv().Config.ServerHop then
-    task.wait(2)
     ServerHop()
 end
