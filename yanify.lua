@@ -84,15 +84,15 @@ function FruitEspOn()
                 BillboardGui.Active = true
                 BillboardGui.AlwaysOnTop = true
                 BillboardGui.LightInfluence = 1
-                BillboardGui.Size = UDim2.new(0, 100, 0, 25)
+                BillboardGui.Size = UDim2.new(0, 200, 0, 25)
                 TextLabel.Parent = BillboardGui
                 TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
                 TextLabel.BackgroundTransparency = 1
                 TextLabel.BorderSizePixel = 0
-                TextLabel.Size = UDim2.new(0, 100, 0, 25)
+                TextLabel.Size = UDim2.new(0, 200, 0, 25)
                 TextLabel.Font = Enum.Font.SourceSans
                 TextLabel.Text = v.Name
-                TextLabel.TextColor3 = Color3.new(0.215686, 1, 0.145098)
+                TextLabel.TextColor3 = Color3.new(0.854901, 1, 0.843137)
             end
         end
 
@@ -105,15 +105,15 @@ function FruitEspOn()
                 BillboardGui.Active = true
                 BillboardGui.AlwaysOnTop = true
                 BillboardGui.LightInfluence = 1
-                BillboardGui.Size = UDim2.new(0, 100, 0, 25)
+                BillboardGui.Size = UDim2.new(0, 200, 0, 25)
                 TextLabel.Parent = BillboardGui
                 TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
                 TextLabel.BackgroundTransparency = 1
                 TextLabel.BorderSizePixel = 0
-                TextLabel.Size = UDim2.new(0, 100, 0, 25)
+                TextLabel.Size = UDim2.new(0, 200, 0, 25)
                 TextLabel.Font = Enum.Font.SourceSans
                 TextLabel.Text = "Spawned Fruit"
-                TextLabel.TextColor3 = Color3.new(1, 0.941176, 0.145098)
+                TextLabel.TextColor3 = Color3.new(1, 0.933333, 0)
                 TextLabel.TextScaled = true
                 TextLabel.TextSize = 14
                 TextLabel.TextWrapped = true
