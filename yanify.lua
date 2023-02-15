@@ -1,3 +1,5 @@
+task.wait(3)
+
 function Notify(fruits)
 
     local date = DateTime.now():FormatLocalTime("MMM/D/YY HH:mm", "en-US")
