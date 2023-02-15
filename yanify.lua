@@ -27,7 +27,9 @@ function Notify(fruits)
                         ["name"] = "『🔗』Server Link ↴",
                         ["value"] = "**EXTENSION NEEDED**\n[Roblox URL Launcher](https://chrome.google.com/webstore/detail/roblox-url-launcher/lcefjaknjehbafdeacjbjnfpfldjdlcc?hl=en)\n\n"
                         .."**SERVER LINK**\n"
-                        .."[JOIN GAME](https://www.roblox.com/home?placeId=2753915549&gameId="
+                        .."[JOIN GAME](https://www.roblox.com/home?placeId="
+                        ..game.PlaceId
+                        .."&gameId="
                         ..server
                         ..")",
                         ["inline"] = true
