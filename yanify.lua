@@ -62,7 +62,7 @@ function FindFruit()
 
         if v:IsA("Model") and v.Name == "Fruit" then
            local c = v:GetDescendants()
-           table.insert("Spawned Fruit".."["..table.concat(c, "/").."]")
+           table.insert(FruitTable, "Spawned Fruit".."["..table.concat(c, "/").."]")
         end
     end
 
@@ -264,6 +264,7 @@ end)
 -- main code
 
 FindFruit()
+FruitEspOn()
 
 if getgenv().Config.AutoTween then
     TweenToFruit(true)
