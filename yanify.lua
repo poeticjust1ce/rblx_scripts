@@ -60,7 +60,7 @@ function FindFruit()
             table.insert(FruitTable, v.Name)
         end
 
-        if v:IsA("Model") and v.Name == "Fruit" then
+        if v:IsA("Model") and v.Name == "Fruit " then
            local c = v:GetDescendants()
            table.insert(FruitTable, "Spawned Fruit".."["..table.concat(c, "/").."]")
            print(table.concat(c, "\n"))
