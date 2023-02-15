@@ -63,9 +63,7 @@ function FindFruit()
         if v:IsA("Model") and v.Name == "Fruit " then
             local MeshesTable = {}
             for _, y in pairs(v:GetChildren()) do
-                if y.Name:find("Meshes") then
-                    table.insert(MeshesTable, y.Name)
-                end
+                table.insert(MeshesTable, y.Name)
             end
             table.insert(FruitTable, "Fruit ".."["..table.concat(MeshesTable, " | ").."]")
         end
