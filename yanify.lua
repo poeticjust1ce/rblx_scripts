@@ -209,6 +209,23 @@ function TweenToFruit(bool)
     end
 end
 
+function TestWebhook()
+    syn.request({
+        Url = getgenv().Config.Webhook,
+        Method = "POST",
+        Headers = {
+            ["Content-Type"] = "application/json"
+        },
+        Body = game:GetService("HttpService"):JSONEncode({
+            ["content"] = nil,
+            ["embeds"] = {{
+                ["title"] = "✅ **Webhook is working!**",
+                ["color"] = tonumber(0x813bb3)
+            }}
+        })
+    })
+end
+
 -- ui 
 
 local l = loadstring(game:HttpGet("https://raw.githubusercontent.com/laderite/bleklib/main/library.lua"))()
@@ -242,6 +259,10 @@ end)
 
 maintab:Button('Server Hop', function()
     ServerHop()
+end)
+
+maintab:Button('Test Webhook', function()
+    TestWebhook()
 end)
 
 maintab:Button('Close GUI', function()
