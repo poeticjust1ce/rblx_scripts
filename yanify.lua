@@ -69,7 +69,6 @@ function FindFruit()
         end
     end
 
-
     if table.getn(FruitTable) ~= 0 then
         Notify(FruitTable)
     end
