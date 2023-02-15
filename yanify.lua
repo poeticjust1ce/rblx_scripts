@@ -31,6 +31,7 @@ function Notify(fruits)
                         ..game.PlaceId
                         .."&gameId="
                         ..server
+                        .."&dontClose=1"
                         ..")",
                         ["inline"] = true
               
@@ -277,5 +278,6 @@ if getgenv().Config.AutoTween then
 end
 
 if getgenv().Config.ServerHop then
+    task(2)
     ServerHop()
 end
